@@ -16,6 +16,9 @@ function App() {
               <MintPage></MintPage>
               // <WalletNFTs nfts={walletNFTs}></WalletNFTs>
             } />
+            <Route path="/test" element={
+              <h1>Hello World!</h1>
+            } />
           </Routes>
       </div>
     </div>
