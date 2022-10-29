@@ -130,32 +130,33 @@ export const NFTCardView: React.FC<NFTCardProp> = ({nft, setChosenNFT, chosenNFT
         return placeholder
       }
     return(
-    // <Card style={{color: "#000"}}>
-    //     <Card.Header>{nft.contractName}</Card.Header>
-    //     {/* <img alt="" src={imageURL(nft.metadata)}></img> */}
-    //     {/* <SvgXml xml={DATA_IMAGE(nft.metadata)} width='50%' height='50%' /> */}
-    //     {(isSvg64(imageURL(nft.metadata))) ? (<div>
-    //         <img src={`data:image/svg+xml;utf8,${base64Svg(imageURL(nft.metadata))}`} />
-    //     </div>) : (<Card.Img alt ="" src={imageURL(nft.metadata)}></Card.Img>)}
-    //     <Card.Body>
-    //     <Card.Title>{name(nft.metadata)}</Card.Title>
-    //     <Card.Text>#{nft.id}</Card.Text>
-    //     </Card.Body>
-    //     <Card.Footer>
-    //         {showButton() ? (
-    //             <Button onClick={()=> setChosenNFT(nft)} className="btn btn-bordered-white btn-smaller mt-3">
-    //                 <i className="mr-2"/>Choose
-    //             </Button>
-    //         ):(
-    //             <div></div>
-    //         )}
+    <Card style={{color: "#000"}}>
+        <Card.Header>{nft.contractName}</Card.Header>
+        {/* <img alt="" src={imageURL(nft.metadata)}></img> */}
+        {/* <SvgXml xml={DATA_IMAGE(nft.metadata)} width='50%' height='50%' /> */}
+        {/* {(isSvg64(imageURL(nft.metadata))) ? (<div>
+            <img src={`data:image/svg+xml;utf8,${base64Svg(imageURL(nft.metadata))}`} />
+        </div>) : (<Card.Img alt ="" src={imageURL(nft.metadata)}></Card.Img>)} */}
+        <Card.Img alt ="" src={imageURL(nft.metadata)}></Card.Img>
+        <Card.Body>
+        <Card.Title>{name(nft.metadata)}</Card.Title>
+        <Card.Text>#{nft.id}</Card.Text>
+        </Card.Body>
+        <Card.Footer>
+            {showButton() ? (
+                <Button onClick={()=> setChosenNFT(nft)} className="btn btn-bordered-white btn-smaller mt-3">
+                    <i className="mr-2"/>Choose
+                </Button>
+            ):(
+                <div></div>
+            )}
 
-    //     </Card.Footer>
-    // </Card>
-    <div>
-    <img alt="" src="data:image/svg+xml;basdata:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaW5ZTWluIG1lZXQiIHZpZXdCb3g9IjAgMCAxMjAwIDEyMDAiPjxpbWFnZSBocmVmPSJodHRwczovL25lb3Rva3lvLm15cGluYXRhLmNsb3VkL2lwZnMvUW1lcWVCcHNZVHVKTDhBWmhZOWZHQmVUajlRdXZNVnFhWmVSV0ZuakEyNFFFRS9iYWNrZ3JvdW5kLzgucG5nIi8+PGltYWdlIGhyZWY9Imh0dHBzOi8vbmVvdG9reW8ubXlwaW5hdGEuY2xvdWQvaXBmcy9RbWVxZUJwc1lUdUpMOEFaaFk5ZkdCZVRqOVF1dk1WcWFaZVJXRm5qQTI0UUVFL2JvZHkvMC0xLnBuZyIvPjxpbWFnZSBocmVmPSJodHRwczovL25lb3Rva3lvLm15cGluYXRhLmNsb3VkL2lwZnMvUW1lcWVCcHNZVHVKTDhBWmhZOWZHQmVUajlRdXZNVnFhWmVSV0ZuakEyNFFFRS9jbG90aC8yMi5wbmciLz48aW1hZ2UgaHJlZj0iaHR0cHM6Ly9uZW90b2t5by5teXBpbmF0YS5jbG91ZC9pcGZzL1FtZXFlQnBzWVR1Skw4QVpoWTlmR0JlVGo5UXV2TVZxYVplUldGbmpBMjRRRUUvaGFuZC8wLTEtMi5wbmciLz48aW1hZ2UgaHJlZj0iaHR0cHM6Ly9uZW90b2t5by5teXBpbmF0YS5jbG91ZC9pcGZzL1FtZXFlQnBzWVR1Skw4QVpoWTlmR0JlVGo5UXV2TVZxYVplUldGbmpBMjRRRUUvd2VhcG9uLzE3LnBuZyIvPjxpbWFnZSBocmVmPSJodHRwczovL25lb3Rva3lvLm15cGluYXRhLmNsb3VkL2lwZnMvUW1lcWVCcHNZVHVKTDhBWmhZOWZHQmVUajlRdXZNVnFhWmVSV0ZuakEyNFFFRS9oZWFkLzAtMS5wbmciLz48aW1hZ2UgaHJlZj0iaHR0cHM6Ly9uZW90b2t5by5teXBpbmF0YS5jbG91ZC9pcGZzL1FtZXFlQnBzWVR1Skw4QVpoWTlmR0JlVGo5UXV2TVZxYVplUldGbmpBMjRRRUUvbW91dGgvMC0xLTIucG5nIi8+PGltYWdlIGhyZWY9Imh0dHBzOi8vbmVvdG9reW8ubXlwaW5hdGEuY2xvdWQvaXBmcy9RbWVxZUJwc1lUdUpMOEFaaFk5ZkdCZVRqOVF1dk1WcWFaZVJXRm5qQTI0UUVFL25vc2UvMC0xLTIucG5nIi8+PGltYWdlIGhyZWY9Imh0dHBzOi8vbmVvdG9reW8ubXlwaW5hdGEuY2xvdWQvaXBmcy9RbWVxZUJwc1lUdUpMOEFaaFk5ZkdCZVRqOVF1dk1WcWFaZVJXRm5qQTI0UUVFL2V5ZXMvMC0xLTAucG5nIi8+PGltYWdlIGhyZWY9Imh0dHBzOi8vbmVvdG9reW8ubXlwaW5hdGEuY2xvdWQvaXBmcy9RbWVxZUJwc1lUdUpMOEFaaFk5ZkdCZVRqOVF1dk1WcWFaZVJXRm5qQTI0UUVFL2hlbG0vMTAucG5nIi8+PC9zdmc+e64,PHN2ZyB4bWxucz0iaHR0cDo etc"></img>
+        </Card.Footer>
+    </Card>
+    // <div>
+    // <img alt="" src="data:image/svg+xml;basdata:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaW5ZTWluIG1lZXQiIHZpZXdCb3g9IjAgMCAxMjAwIDEyMDAiPjxpbWFnZSBocmVmPSJodHRwczovL25lb3Rva3lvLm15cGluYXRhLmNsb3VkL2lwZnMvUW1lcWVCcHNZVHVKTDhBWmhZOWZHQmVUajlRdXZNVnFhWmVSV0ZuakEyNFFFRS9iYWNrZ3JvdW5kLzgucG5nIi8+PGltYWdlIGhyZWY9Imh0dHBzOi8vbmVvdG9reW8ubXlwaW5hdGEuY2xvdWQvaXBmcy9RbWVxZUJwc1lUdUpMOEFaaFk5ZkdCZVRqOVF1dk1WcWFaZVJXRm5qQTI0UUVFL2JvZHkvMC0xLnBuZyIvPjxpbWFnZSBocmVmPSJodHRwczovL25lb3Rva3lvLm15cGluYXRhLmNsb3VkL2lwZnMvUW1lcWVCcHNZVHVKTDhBWmhZOWZHQmVUajlRdXZNVnFhWmVSV0ZuakEyNFFFRS9jbG90aC8yMi5wbmciLz48aW1hZ2UgaHJlZj0iaHR0cHM6Ly9uZW90b2t5by5teXBpbmF0YS5jbG91ZC9pcGZzL1FtZXFlQnBzWVR1Skw4QVpoWTlmR0JlVGo5UXV2TVZxYVplUldGbmpBMjRRRUUvaGFuZC8wLTEtMi5wbmciLz48aW1hZ2UgaHJlZj0iaHR0cHM6Ly9uZW90b2t5by5teXBpbmF0YS5jbG91ZC9pcGZzL1FtZXFlQnBzWVR1Skw4QVpoWTlmR0JlVGo5UXV2TVZxYVplUldGbmpBMjRRRUUvd2VhcG9uLzE3LnBuZyIvPjxpbWFnZSBocmVmPSJodHRwczovL25lb3Rva3lvLm15cGluYXRhLmNsb3VkL2lwZnMvUW1lcWVCcHNZVHVKTDhBWmhZOWZHQmVUajlRdXZNVnFhWmVSV0ZuakEyNFFFRS9oZWFkLzAtMS5wbmciLz48aW1hZ2UgaHJlZj0iaHR0cHM6Ly9uZW90b2t5by5teXBpbmF0YS5jbG91ZC9pcGZzL1FtZXFlQnBzWVR1Skw4QVpoWTlmR0JlVGo5UXV2TVZxYVplUldGbmpBMjRRRUUvbW91dGgvMC0xLTIucG5nIi8+PGltYWdlIGhyZWY9Imh0dHBzOi8vbmVvdG9reW8ubXlwaW5hdGEuY2xvdWQvaXBmcy9RbWVxZUJwc1lUdUpMOEFaaFk5ZkdCZVRqOVF1dk1WcWFaZVJXRm5qQTI0UUVFL25vc2UvMC0xLTIucG5nIi8+PGltYWdlIGhyZWY9Imh0dHBzOi8vbmVvdG9reW8ubXlwaW5hdGEuY2xvdWQvaXBmcy9RbWVxZUJwc1lUdUpMOEFaaFk5ZkdCZVRqOVF1dk1WcWFaZVJXRm5qQTI0UUVFL2V5ZXMvMC0xLTAucG5nIi8+PGltYWdlIGhyZWY9Imh0dHBzOi8vbmVvdG9reW8ubXlwaW5hdGEuY2xvdWQvaXBmcy9RbWVxZUJwc1lUdUpMOEFaaFk5ZkdCZVRqOVF1dk1WcWFaZVJXRm5qQTI0UUVFL2hlbG0vMTAucG5nIi8+PC9zdmc+e64,PHN2ZyB4bWxucz0iaHR0cDo etc"></img>
 
-    </div>
+    // </div>
 
     )
 }

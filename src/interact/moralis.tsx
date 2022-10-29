@@ -27,7 +27,7 @@ export const getMoralisNFTs = async(address:string, network:Network) => {
     }
     try {
         console.log("CHAIN: ", chainRequest())
-        const ADDRESS = "0x92fCD15a46f9746D64369cCf73EBF6d6c5FD5a52"
+        const ADDRESS = address //"0x92fCD15a46f9746D64369cCf73EBF6d6c5FD5a52"
         const endpoint = ADDRESS + `/nft?chain=${chainRequest()}&format=decimal`;
         console.log(moralisEndpoint + endpoint)
         const moralis = await axios.get(moralisEndpoint + endpoint);
