@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom'
 import Home from './pages/Home'
 import MintPage from './pages/MintPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
     <div className="App">
       <div>
           <Routes>
@@ -22,7 +22,7 @@ function App() {
           </Routes>
       </div>
     </div>
-  </BrowserRouter>
+  </HashRouter>
   )
 }
 
