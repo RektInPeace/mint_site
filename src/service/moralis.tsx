@@ -48,7 +48,7 @@ export const getMoralisNFTs = async ( param: Param ) => {
 
     axios.defaults.headers.common = { "X-API-Key": moralisAPIKEY,};
 
-    if ((address) && (network)) {
+    if (address && network) {
 
       try {
           const chain = chainRequest(network)

@@ -6,7 +6,7 @@ const toNum = (bigNum: ethers.BigNumber) => ethers.BigNumber.from(bigNum).toNumb
 // 0x14e4229468CAeB308ca0BC29454Bf89394CA1BCA  - goerli
 // 0x1D13fF25b10C9a6741DFdce229073bed652197c7
 export const mintREKT = async (nft:NFT,message: string, signer: ethers.providers.JsonRpcSigner | undefined) => {
-    if (signer !== undefined){
+    if (signer){
         const rektContract = Rekt__factory.connect('0x375e0a007C01E2c4eB32E20264376eB25f12397F',signer)
         const imgURL = imageURL(nft.metadata)
         console.log("Attempting Mint")
@@ -32,7 +32,7 @@ export const mintREKT = async (nft:NFT,message: string, signer: ethers.providers
 }
 
 export const uriFor = async (tokenId:number, signer: ethers.providers.JsonRpcSigner | undefined) => {
-    if (signer !== undefined){
+    if (signer){
         const rekt = Rekt__factory.connect('0x375e0a007C01E2c4eB32E20264376eB25f12397F',signer)
         const uri = await rekt.tokenURI(tokenId)
         const response = await fetch(uri)
@@ -42,7 +42,7 @@ export const uriFor = async (tokenId:number, signer: ethers.providers.JsonRpcSig
 }
 
 export const mintSqaure = async (signer: ethers.providers.JsonRpcSigner | undefined) => {
-    if (signer !== undefined){
+    if (signer){
         const colorContract = ImageTest__factory.connect('0x29f3187590C6D61Ac04847971e7685AfebaC7b11',signer)
         console.log("Attempting Mint")
 
