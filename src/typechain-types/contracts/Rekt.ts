@@ -30,14 +30,15 @@ import type {
 
 export interface RektInterface extends utils.Interface {
   functions: {
+    "_metadata(uint256)": FunctionFragment;
     "_tokenIds()": FunctionFragment;
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
-    "contractNames(address,uint256)": FunctionFragment;
+    "baseURL()": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
     "mintPrice()": FunctionFragment;
-    "mintWithID(address,uint256,string,string,string)": FunctionFragment;
+    "mintWithID(address,uint256,string)": FunctionFragment;
     "name()": FunctionFragment;
     "owner()": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
@@ -52,10 +53,11 @@ export interface RektInterface extends utils.Interface {
 
   getFunction(
     nameOrSignatureOrTopic:
+      | "_metadata"
       | "_tokenIds"
       | "approve"
       | "balanceOf"
-      | "contractNames"
+      | "baseURL"
       | "getApproved"
       | "isApprovedForAll"
       | "mintPrice"
@@ -72,6 +74,10 @@ export interface RektInterface extends utils.Interface {
       | "transferFrom"
   ): FunctionFragment;
 
+  encodeFunctionData(
+    functionFragment: "_metadata",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
   encodeFunctionData(functionFragment: "_tokenIds", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "approve",
@@ -81,10 +87,7 @@ export interface RektInterface extends utils.Interface {
     functionFragment: "balanceOf",
     values: [PromiseOrValue<string>]
   ): string;
-  encodeFunctionData(
-    functionFragment: "contractNames",
-    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
-  ): string;
+  encodeFunctionData(functionFragment: "baseURL", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "getApproved",
     values: [PromiseOrValue<BigNumberish>]
@@ -99,8 +102,6 @@ export interface RektInterface extends utils.Interface {
     values: [
       PromiseOrValue<string>,
       PromiseOrValue<BigNumberish>,
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
       PromiseOrValue<string>
     ]
   ): string;
@@ -149,13 +150,11 @@ export interface RektInterface extends utils.Interface {
     ]
   ): string;
 
+  decodeFunctionResult(functionFragment: "_metadata", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "_tokenIds", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "contractNames",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "baseURL", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getApproved",
     data: BytesLike
@@ -266,6 +265,17 @@ export interface Rekt extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    _metadata(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<
+      [string, BigNumber, string] & {
+        rektAddress: string;
+        rektId: BigNumber;
+        message: string;
+      }
+    >;
+
     _tokenIds(
       overrides?: CallOverrides
     ): Promise<[BigNumber] & { _value: BigNumber }>;
@@ -281,11 +291,7 @@ export interface Rekt extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
 
-    contractNames(
-      _contractAddress: PromiseOrValue<string>,
-      _rektId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[string, string]>;
+    baseURL(overrides?: CallOverrides): Promise<[string]>;
 
     getApproved(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -303,8 +309,6 @@ export interface Rekt extends BaseContract {
     mintWithID(
       _rektContract: PromiseOrValue<string>,
       _rektId: PromiseOrValue<BigNumberish>,
-      _rektName: PromiseOrValue<string>,
-      _rektImgUrl: PromiseOrValue<string>,
       _rektMessage: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
@@ -359,6 +363,17 @@ export interface Rekt extends BaseContract {
     ): Promise<ContractTransaction>;
   };
 
+  _metadata(
+    arg0: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides
+  ): Promise<
+    [string, BigNumber, string] & {
+      rektAddress: string;
+      rektId: BigNumber;
+      message: string;
+    }
+  >;
+
   _tokenIds(overrides?: CallOverrides): Promise<BigNumber>;
 
   approve(
@@ -372,11 +387,7 @@ export interface Rekt extends BaseContract {
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
-  contractNames(
-    _contractAddress: PromiseOrValue<string>,
-    _rektId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<[string, string]>;
+  baseURL(overrides?: CallOverrides): Promise<string>;
 
   getApproved(
     tokenId: PromiseOrValue<BigNumberish>,
@@ -394,8 +405,6 @@ export interface Rekt extends BaseContract {
   mintWithID(
     _rektContract: PromiseOrValue<string>,
     _rektId: PromiseOrValue<BigNumberish>,
-    _rektName: PromiseOrValue<string>,
-    _rektImgUrl: PromiseOrValue<string>,
     _rektMessage: PromiseOrValue<string>,
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
@@ -450,6 +459,17 @@ export interface Rekt extends BaseContract {
   ): Promise<ContractTransaction>;
 
   callStatic: {
+    _metadata(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<
+      [string, BigNumber, string] & {
+        rektAddress: string;
+        rektId: BigNumber;
+        message: string;
+      }
+    >;
+
     _tokenIds(overrides?: CallOverrides): Promise<BigNumber>;
 
     approve(
@@ -463,11 +483,7 @@ export interface Rekt extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    contractNames(
-      _contractAddress: PromiseOrValue<string>,
-      _rektId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[string, string]>;
+    baseURL(overrides?: CallOverrides): Promise<string>;
 
     getApproved(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -485,8 +501,6 @@ export interface Rekt extends BaseContract {
     mintWithID(
       _rektContract: PromiseOrValue<string>,
       _rektId: PromiseOrValue<BigNumberish>,
-      _rektName: PromiseOrValue<string>,
-      _rektImgUrl: PromiseOrValue<string>,
       _rektMessage: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
@@ -577,6 +591,11 @@ export interface Rekt extends BaseContract {
   };
 
   estimateGas: {
+    _metadata(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     _tokenIds(overrides?: CallOverrides): Promise<BigNumber>;
 
     approve(
@@ -590,11 +609,7 @@ export interface Rekt extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    contractNames(
-      _contractAddress: PromiseOrValue<string>,
-      _rektId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    baseURL(overrides?: CallOverrides): Promise<BigNumber>;
 
     getApproved(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -612,8 +627,6 @@ export interface Rekt extends BaseContract {
     mintWithID(
       _rektContract: PromiseOrValue<string>,
       _rektId: PromiseOrValue<BigNumberish>,
-      _rektName: PromiseOrValue<string>,
-      _rektImgUrl: PromiseOrValue<string>,
       _rektMessage: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
@@ -669,6 +682,11 @@ export interface Rekt extends BaseContract {
   };
 
   populateTransaction: {
+    _metadata(
+      arg0: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     _tokenIds(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     approve(
@@ -682,11 +700,7 @@ export interface Rekt extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    contractNames(
-      _contractAddress: PromiseOrValue<string>,
-      _rektId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    baseURL(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getApproved(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -704,8 +718,6 @@ export interface Rekt extends BaseContract {
     mintWithID(
       _rektContract: PromiseOrValue<string>,
       _rektId: PromiseOrValue<BigNumberish>,
-      _rektName: PromiseOrValue<string>,
-      _rektImgUrl: PromiseOrValue<string>,
       _rektMessage: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;

@@ -28,10 +28,8 @@ export const NFTCardView: React.FC<Prop> = ({nft, setChosenNFT, chosenNFT}) => {
         } 
     }
 
-
-
     const buttonView = () => {
-        let button = (<Button onClick={setChosen} className="btn btn-bordered-white btn-smaller mt-3">
+        let button = (<Button onClick={setChosen} className="btn btn-lg ml-auto">
         <i className="mr-2"/>Choose
     </Button>)
         if (chosenNFT) {
@@ -47,11 +45,11 @@ export const NFTCardView: React.FC<Prop> = ({nft, setChosenNFT, chosenNFT}) => {
 
     return(
     <Card style={{color: "#000"}}>
-        <Card.Header>{nft.contractName}</Card.Header>
+        <Card.Header className='font-face-mm'>{nft.contractName} #{nft.id}</Card.Header>
         <Card.Img alt ="" src={imageURL(nft.metadata)}></Card.Img>
         <Card.Body>
-        <Card.Title>{name(nft.metadata)}</Card.Title>
-        <Card.Text>#{nft.id}</Card.Text>
+        {/* <Card.Title></Card.Title> */}
+        <Card.Text>{name(nft.metadata)}</Card.Text>
         </Card.Body>
         <Card.Footer>
             {buttonView()}

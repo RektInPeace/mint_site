@@ -4,13 +4,13 @@ import {Web3Button} from './Web3Button'
 
 const Navigation = () => {
     return (
-        <Navbar expand="lg" className="colorBackground">
-            <Container>
-                <Navbar.Brand href="/">
-                    <img src={icon} width="40" height="40" className="" alt="" />
-                    &nbsp; 
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar collapseOnSelect expand="lg">
+        <Navbar.Brand href="/">
+          <Nav.Item>
+            <Nav.Link className='nav-header'>REKT IIN PEACE</Nav.Link>
+          </Nav.Item>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         {/* <Nav.Link as={Link} to="/mint">Mint</Nav.Link>
@@ -20,7 +20,6 @@ const Navigation = () => {
                         <Web3Button/>
                     </Nav>
                 </Navbar.Collapse>
-            </Container>
         </Navbar>
     )
 }

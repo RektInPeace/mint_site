@@ -26,11 +26,6 @@ export const WalletNFTs: React.FC<Prop> = ({setChosenNFT, chosenNFT})=> {
        fetchNFTs()
     }, [address, network])
 
-    // const groupBy = <K extends keyof NFT>(arr: NFT[], key: (i: NFT) => K) =>
-    // arr.reduce((groups, item) => {
-    //   (groups[key(item)] ||= []).push(item);
-    //   return groups;
-    // }, {} as Record<K, NFT[]>);
 
     const groupByToMap = <T, Q>(array: T[], predicate: (value: T, index: number, array: T[]) => Q) =>
             array.reduce((map, value, index, array) => {
@@ -38,12 +33,6 @@ export const WalletNFTs: React.FC<Prop> = ({setChosenNFT, chosenNFT})=> {
             map.get(key)?.push(value) ?? map.set(key, [value]);
             return map;
   }, new Map<Q, T[]>());
-
-//   {
-//     "Bored Ape" : [{name:"Monkey",}]
-//     "Mulifacuer" : [{name:"Monkey"}, {name:"Monkey"}]
-
-//   }
 
     function nftList() {
         const groups = groupByToMap(nfts, v => v.contractName); // Map string -> NFT[]
@@ -92,11 +81,11 @@ export const WalletNFTs: React.FC<Prop> = ({setChosenNFT, chosenNFT})=> {
 
     return(
         <div>
-            <div className="flex justify-center">
+            <div className="flex">
             <Row xs={1} md={2} lg={4} className="g-4 py-5">
-                {nftList()}
+                {nftGrid(nfts)}
             </Row>
-            </div>›
+            </div>
         </div>
     )
 }
