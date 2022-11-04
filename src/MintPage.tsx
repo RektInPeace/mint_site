@@ -43,11 +43,8 @@ const MintPage = () => {
 
     return (
         <div>
-            <Navigation />
+        <Navigation />
         {top()}
-
-
-
             <div className="Home-header">
                 <div className='pt-5'>
                     {/* <Button onClick={mintSquareNFT} >Mint Square</Button> */}

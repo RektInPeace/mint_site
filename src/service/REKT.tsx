@@ -1,11 +1,8 @@
 import {ethers} from 'ethers'
 import { imageURL, NFT} from './moralis';
-// import RektABI from '../../../artifacts/contracts/Rekt.sol/Rekt.json'
 import { Rekt__factory, ImageTest__factory } from '../typechain-types/factories/contracts'
 const toNum = (bigNum: ethers.BigNumber) => ethers.BigNumber.from(bigNum).toNumber()
-// 0x14e4229468CAeB308ca0BC29454Bf89394CA1BCA  - goerli
-// 0x1D13fF25b10C9a6741DFdce229073bed652197c7
-const rektAddress = "0x77B73b976b66ce41a79E309f368110e170cB15a4"
+const rektAddress = "0x3c586e048573A323B9794c38010D721d6ca5182B"
 export const mintREKT = async (nft:NFT,message: string, signer: ethers.providers.JsonRpcSigner | undefined) => {
     if (signer){
         const rektContract = Rekt__factory.connect(rektAddress,signer)
