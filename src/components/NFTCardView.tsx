@@ -34,7 +34,7 @@ export const NFTCardView: React.FC<Prop> = ({nft, setChosenNFT, chosenNFT}) => {
     </Button>)
         if (chosenNFT) {
             if ( (nft.address === chosenNFT.address) && (nft.id === chosenNFT.id) ) {
-                return <Container/>
+                return <div/>
             } else {
                 return button
             }
@@ -43,18 +43,35 @@ export const NFTCardView: React.FC<Prop> = ({nft, setChosenNFT, chosenNFT}) => {
         }
     }
 
+    const leader = () => { return (
+        <a className="each-portfolio" data-fancybox="gallery" onClick={setChosen}>
+            <div className="content hover-cont-wrap">
+                <div className="content-overlay"></div>
+                <img className="content-image" src={imageURL(nft.metadata)} />
+                <div className="content-details fadeIn-bottom">
+                    <h5 className="p-title">{nft.contractName}</h5>
+                    <h5 className="p-title">#{nft.id}</h5>
+                    <p className="p-desc">{name(nft.metadata)}</p>
+                    {buttonView()}
+                    <span className="zoom"><i className="fa fa-search-plus"></i></span>
+                </div>
+            </div>
+        </a>
+    )}
+
     return(
-    <Card style={{color: "#000"}}>
-        <Card.Header className='font-face-mm'>{nft.contractName} #{nft.id}</Card.Header>
-        <Card.Img alt ="" src={imageURL(nft.metadata)}></Card.Img>
-        <Card.Body>
-        {/* <Card.Title></Card.Title> */}
-        <Card.Text>{name(nft.metadata)}</Card.Text>
-        </Card.Body>
-        <Card.Footer>
-            {buttonView()}
-        </Card.Footer>
-    </Card>
+        leader()
+    // <Card style={{color: "#000"}}>
+    //     <Card.Header className='font-face-mm'>{nft.contractName} #{nft.id}</Card.Header>
+    //     <Card.Img alt ="" src={imageURL(nft.metadata)}></Card.Img>
+    //     <Card.Body>
+    //     {/* <Card.Title></Card.Title> */}
+    //     <Card.Text>{name(nft.metadata)}</Card.Text>
+    //     </Card.Body>
+    //     <Card.Footer>
+    //         {buttonView()}
+    //     </Card.Footer>
+    // </Card>
     )
 }
 

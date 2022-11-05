@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {mintREKT} from '../service/REKT';
-import {NFT} from '../service/moralis';
-import { Col, Row, Button } from 'react-bootstrap'
+import { imageURL, NFT} from '../service/moralis';
+import { Col, Row, Button, Container } from 'react-bootstrap'
 import {NFTCardView} from './NFTCardView';
 import { useWeb3Context } from '../context'
 import { toast } from 'react-toastify'
@@ -33,21 +33,31 @@ export const MintNFT: React.FC<MintProp> = ({ chosenNFT})=> {
         }
     }
 
+    const chosenView = (nft: NFT) => { return(
+        <div>
+            <Row>
+                <Col className="overflow-hidden">
+                <img alt="" width="500" height="600" src={imageURL(nft.metadata)}></img>
+                <h1>RIP Message: </h1>
+
+                </Col>
+            
+            <div>
+            <textarea value={rektMessage} onChange={(e)=>setRektMessage(e.target.value)}></textarea>
+            </div>
+            </Row>
+        </div>
+    )}
+
     return (
         (chosenNFT !== undefined) ? (
             (mintedMetada !== undefined) ? (
             <div>
-                <img alt="" src={mintedMetada.image as string}></img>
+                <img alt="" width="500" height="600" src={mintedMetada.image as string}></img>
             </div>
             ) : (
             <div>
-            <Row xs={1} md={2} lg={4} className="g-4 py-5">
-                <Col className="overflow-hidden">
-                <NFTCardView nft={chosenNFT} setChosenNFT={undefined} chosenNFT={chosenNFT} ></NFTCardView>
-                </Col>
-                <div>
-                <h1>RIP Message: </h1>
-                <textarea value={rektMessage} onChange={(e)=>setRektMessage(e.target.value)}></textarea>
+                {chosenView(chosenNFT)}
                 {(isMinting ? (
                     (mintedMetada !== undefined) ? (
                         <div>
@@ -62,10 +72,8 @@ export const MintNFT: React.FC<MintProp> = ({ chosenNFT})=> {
                     <Button className="btn btn-primary btn-lg" onClick={mintRekt}> Mint </Button>
                 ))}
             </div>
-            </Row>
 
 
-            </div>
         )
         ) : (
                 (web3Provider) ? (<h1>Choose an NFT</h1>) : 

@@ -14,7 +14,7 @@ export const mintREKT = async (nft:NFT,message: string, signer: ethers.providers
         const tx = await (await rektContract.mintWithID(nft.address, nft.id, message, overrides)).wait()
         console.log("Mint Success")
 
-        const bigNum = await rektContract._tokenIds()
+        const bigNum = await rektContract.totalMinted()
         const tokenID = toNum(bigNum)
         console.log("Mint Success! Token ID: ", tokenID)
 

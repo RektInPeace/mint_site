@@ -4,6 +4,7 @@ import { Row, Col, Button, Container } from 'react-bootstrap'
 import { NFTCardView } from './NFTCardView'
 import { getMoralisNFTs } from '../service/moralis'
 import { useWeb3Context } from '../context'
+import './components.css'
 
 interface Prop {
     // nfts: NFT[],
@@ -69,6 +70,8 @@ export const WalletNFTs: React.FC<Prop> = ({setChosenNFT, chosenNFT})=> {
         }
     }
 
+
+
     function nftGrid(_nfts: NFT[]) {
         return _nfts.map((nft: NFT, idx: number) => {
             return (
@@ -79,14 +82,39 @@ export const WalletNFTs: React.FC<Prop> = ({setChosenNFT, chosenNFT})=> {
         });
     }
 
+    const section = (body: JSX.Element) => {return (
+          <section id={"Portfolio"} className="content-section">
+          <div className="container">
+                <div className="block-heading">
+                  <h1 className='font-face-mm'>NFTs</h1>
+                  <p>Choose an NFT to send to the graveyard</p>
+                </div>
+                {body}
+          </div>
+          </section>
+    )
+    }
+
+    const grid = () => {
+        return nfts.map((nft: NFT, idx: number) => {
+            return (
+                <NFTCardView nft={nft} setChosenNFT={setChosenNFT} chosenNFT={chosenNFT}></NFTCardView>
+                );
+        });
+    }
+
     return(
-        <div>
-            <div className="flex">
+
+        section(
+            <div className="portfolio-wrapper clearfix">
+            {grid()}
+        </div>
+        )
+    )
+}
+            {/* <div className="flex">
             <Row xs={1} md={2} lg={4} className="g-4 py-5">
                 {nftGrid(nfts)}
             </Row>
-            </div>
-        </div>
-    )
-}
+            </div> */}
 

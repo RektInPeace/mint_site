@@ -45,14 +45,8 @@ const MintPage = () => {
         <div>
         <Navigation />
         {top()}
-            <div className="Home-header">
-                <div className='pt-5'>
-                    {/* <Button onClick={mintSquareNFT} >Mint Square</Button> */}
-                    <MintNFT chosenNFT={chosenNFT} ></MintNFT>
-                    <WalletNFTs setChosenNFT={setChosenNFT} chosenNFT={chosenNFT}></WalletNFTs>
-                </div>
-
-            </div>
+        <MintNFT chosenNFT={chosenNFT} ></MintNFT>
+        <WalletNFTs setChosenNFT={setChosenNFT} chosenNFT={chosenNFT}></WalletNFTs>
         </div>
     )
 }
