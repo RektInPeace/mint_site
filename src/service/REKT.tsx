@@ -2,7 +2,7 @@ import {ethers} from 'ethers'
 import { imageURL, NFT} from './moralis';
 import { Rekt__factory, ImageTest__factory } from '../typechain-types/factories/contracts'
 const toNum = (bigNum: ethers.BigNumber) => ethers.BigNumber.from(bigNum).toNumber()
-const rektAddress = "0x3c586e048573A323B9794c38010D721d6ca5182B"
+const rektAddress = "0x996a662fe2c964375Ee8473456D1721E09186b29"
 export const mintREKT = async (nft:NFT,message: string, signer: ethers.providers.JsonRpcSigner | undefined) => {
     if (signer){
         const rektContract = Rekt__factory.connect(rektAddress,signer)
@@ -18,7 +18,7 @@ export const mintREKT = async (nft:NFT,message: string, signer: ethers.providers
         const tokenID = toNum(bigNum)
         console.log("Mint Success! Token ID: ", tokenID)
 
-        const uri = await rektContract.tokenURI(tokenID)
+        const uri = await rektContract.tokenURI(tokenID - 1)
         // console.log("Minted URI: ", uri as string)
         const response = await fetch(uri)
         const metadata = await response.json()
